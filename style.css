@@ -1,0 +1,511 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo do cabeçalho */
+header {
+    position: fixed; /* Fixa o header no topo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #374151;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Garante que o header fique acima de outros elementos */
+    transition: background-color 0.3s ease;
+}
+
+header:hover {
+    background-color: #2d3748; /* Escurece ao passar o mouse */
+}
+
+.header-content {
+    flex: 1;
+    text-align: center;
+}
+
+.typed-output {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f9fafb;
+    height: 40px; /* Ajuste conforme necessário */
+    display: inline-block;
+    overflow: hidden;
+}
+
+.menu-container {
+    cursor: pointer;
+    z-index: 100;
+    order: -1; /* Move o menu para o lado esquerdo */
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 30px;
+    height: 24px;
+    justify-content: space-between;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.bar {
+    width: 100%;
+    height: 4px;
+    background-color: #818283;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.hamburger:hover .bar {
+    background: linear-gradient(to right, #60a5fa 0%, #818283 100%);
+}
+
+.hamburger.open .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    background-color: #f3f4f6;
+}
+
+.hamburger.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    background-color: #f3f4f6;
+}
+
+/* Estilo do menu lateral */
+.side-nav {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 200px;
+    height: 100%;
+    background-color: rgba(31, 41, 55, 0.9);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease;
+    padding-top: 60px;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    z-index: 99;
+}
+
+.side-nav.open {
+    transform: translateX(300px);
+    opacity: 1;
+}
+
+.side-nav ul {
+    list-style: none;
+    padding-left: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.side-nav.open ul {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.side-nav ul li {
+    margin: 20px 0;
+}
+
+/* Estilo do link no menu lateral */
+.side-nav ul li a {
+    color: #d1d5db;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 15px;
+    display: inline-block;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.4s ease;
+    text-transform: uppercase;
+    border-radius: 5px;
+}
+
+/* Glow como shadow */
+.side-nav ul li a:hover {
+    background-color: #2d3748; /* Destaque do link ao passar o mouse */
+    color: #f9fafb; /* Muda a cor do texto */
+    transform: translateY(-5px); /* Faz o link "pular" para fora */
+    box-shadow: 0 0 20px 5px rgba(96, 165, 250, 0.8); /* Glow azul */
+}
+
+/* Estilo da hero section */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #374151; /* Cor de fundo igual ao header/footer */
+    color: #f9fafb; /* Cor do texto para contraste */
+    min-height: calc(100vh - 60px); /* Garante que o hero section ocupe a altura restante da tela */
+    padding-top: 120px; /* Ajuste conforme a altura do header */
+    padding-bottom: 80px;
+}
+
+.photo-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-section h1 {
+    font-size: 34px;
+    color: #f9fafb; /* Cor do texto para contraste */
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    color: #d1d5db; /* Cor do texto para contraste */
+    font-size: 18px;
+    margin-top: 10px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo da seção Sobre */
+.sobre-section {
+    padding: 80px 20px;
+    background-color: #f9fafb;
+    color: #333;
+    text-align: center;
+}
+
+.sobre-section h2 {
+    font-size: 34px;
+    margin-bottom: 40px;
+    color: #374151;
+}
+
+.sobre-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.sobre-texto p {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.sobre-habilidades {
+    text-align: left;
+}
+
+.sobre-habilidades h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #374151;
+}
+
+.sobre-habilidades ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.sobre-habilidades li {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Estilo da seção Projetos */
+.projetos-section {
+    padding: 80px 20px;
+    background-color: #ffffff;
+    color: #333;
+    text-align: center;
+}
+
+.projetos-section h2 {
+    font-size: 34px;
+    margin-bottom: 40px;
+    color: #374151;
+}
+
+.projetos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.projeto-card {
+    background-color: #f9fafb;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projeto-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.projeto-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.projeto-card h3 {
+    font-size: 24px;
+    margin: 20px 0 10px;
+    color: #374151;
+}
+
+.projeto-card p {
+    font-size: 16px;
+    padding: 0 20px;
+    color: #6b7280;
+}
+
+.projeto-link {
+    display: inline-block;
+    margin: 20px 10px;
+    padding: 10px 20px;
+    background-color: #60a5fa;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.projeto-link:hover {
+    background-color: #3b82f6;
+}
+
+/* Estilo da seção Contato */
+.contato-section {
+    padding: 80px 20px;
+    background-color: #374151;
+    color: #f9fafb;
+    text-align: center;
+}
+
+.contato-section h2 {
+    font-size: 34px;
+    margin-bottom: 20px;
+    color: #f9fafb;
+}
+
+.agradecimento {
+    font-size: 18px;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+}
+
+.contato-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contato-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 25px;
+    background-color: #60a5fa;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contato-link:hover {
+    background-color: #3b82f6;
+    transform: translateY(-5px);
+}
+
+.contato-link i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+/* Estilo do rodapé */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #374151;
+    color: #f9fafb;
+    padding: 20px 0;
+    text-align: center;
+    z-index: 50;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 0.4s ease, transform 0.6s ease, background-color 0.3s ease; /* Adicionado background-color à transição */
+}
+
+footer.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+footer:hover {
+    background-color: #2d3748; /* Escurece ao passar o mouse */
+}
+
+footer p {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+footer ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+footer ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+footer ul li a {
+    color: #f9fafb;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer ul li a:hover {
+    color: #60a5fa;
+    transform: translateY(-2px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header {
+        padding: 12px 15px;
+    }
+
+    .menu-container {
+        top: 10px;
+        left: 10px;
+    }
+
+    .side-nav {
+        width: 100%;
+    }
+
+    .hero-section {
+        padding: 60px 20px;
+    }
+
+    .sobre-section {
+        padding: 60px 20px;
+    }
+
+    .sobre-texto p {
+        font-size: 16px;
+    }
+
+    .sobre-habilidades h3 {
+        font-size: 20px;
+    }
+
+    .sobre-habilidades li {
+        font-size: 14px;
+    }
+
+    .projetos-section {
+        padding: 60px 20px;
+    }
+
+    .projetos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projeto-card h3 {
+        font-size: 20px;
+    }
+
+    .projeto-card p {
+        font-size: 14px;
+    }
+
+    .contato-section {
+        padding: 60px 20px;
+    }
+
+    .agradecimento {
+        font-size: 16px;
+    }
+
+    .contato-link {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+
+    .side-nav {
+        width: 80%;
+    }
+
+    .hero-section {
+        padding: 50px 15px;
+    }
+
+    .hero-section h1 {
+        font-size: 28px;
+    }
+
+    .hero-section p {
+        font-size: 16px;
+    }
+
+    .hamburger {
+        width: 25px;
+        height: 20px;
+    }
+
+    .side-nav ul li a {
+        font-size: 14px;
+    }
+}
