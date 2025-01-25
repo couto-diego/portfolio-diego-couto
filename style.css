@@ -5,17 +5,60 @@
     box-sizing: border-box;
 }
 
-body {
+/* Define a rolagem suave para toda a página */
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+    scroll-snap-stop: normal;
+    scroll-padding-top: 80px; /* Ajuste conforme a altura do header */
+}
 
+body {
     font-family: 'Poppins', sans-serif;
     background-color: #f5f7fa;
     color: #333;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estilos para o modo escuro */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #f9fafb;
+}
+
+.dark-mode header {
+    background-color: #111827;
+}
+
+.dark-mode .side-nav {
+    background-color: rgba(17, 24, 39, 0.95);
+}
+
+.dark-mode .hero-section {
+    background-color: #111827;
+}
+
+.dark-mode .sobre-section {
+    background-color: #1f2937;
+    color: #f9fafb;
+}
+
+.dark-mode .projetos-section {
+    background-color: #1f2937;
+    color: #f9fafb;
+}
+
+.dark-mode .contato-section {
+    background-color: #111827;
+}
+
+.dark-mode footer {
+    background-color: #111827;
 }
 
 /* Estilo do cabeçalho */
 header {
-    position: fixed; /* Fixa o header no topo */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -25,12 +68,31 @@ header {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Garante que o header fique acima de outros elementos */
+    z-index: 1000;
     transition: background-color 0.3s ease;
 }
 
 header:hover {
-    background-color: #2d3748; /* Escurece ao passar o mouse */
+    background-color: #2d3748;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    color: #f9fafb;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 20px;
+    transition: color 0.3s ease;
+}
+
+#theme-toggle:hover {
+    color: #60a5fa;
+}
+
+/* Estilo para o ícone de sol (modo claro) */
+body.dark-mode #theme-toggle i {
+    color: #f9fafb;
 }
 
 .header-content {
@@ -42,7 +104,7 @@ header:hover {
     font-size: 24px;
     font-weight: bold;
     color: #f9fafb;
-    height: 40px; /* Ajuste conforme necessário */
+    height: 40px;
     display: inline-block;
     overflow: hidden;
 }
@@ -50,7 +112,7 @@ header:hover {
 .menu-container {
     cursor: pointer;
     z-index: 100;
-    order: -1; /* Move o menu para o lado esquerdo */
+    order: -1;
 }
 
 .hamburger {
@@ -111,7 +173,7 @@ header:hover {
 
 .side-nav ul {
     list-style: none;
-    padding-left: 20px;
+    padding-left: 0;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.4s ease, transform 0.4s ease;
@@ -124,6 +186,7 @@ header:hover {
 
 .side-nav ul li {
     margin: 20px 0;
+    text-align: center;
 }
 
 /* Estilo do link no menu lateral */
@@ -133,19 +196,18 @@ header:hover {
     font-size: 18px;
     font-weight: 500;
     padding: 10px 15px;
-    display: inline-block;
+    display: block;
     position: relative;
     transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.4s ease;
     text-transform: uppercase;
     border-radius: 5px;
 }
 
-/* Glow como shadow */
 .side-nav ul li a:hover {
-    background-color: #2d3748; /* Destaque do link ao passar o mouse */
-    color: #f9fafb; /* Muda a cor do texto */
-    transform: translateY(-5px); /* Faz o link "pular" para fora */
-    box-shadow: 0 0 20px 5px rgba(96, 165, 250, 0.8); /* Glow azul */
+    background-color: #2d3748;
+    color: #f9fafb;
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px 5px rgba(96, 165, 250, 0.8);
 }
 
 /* Estilo da hero section */
@@ -156,10 +218,10 @@ header:hover {
     justify-content: center;
     padding: 80px 20px;
     text-align: center;
-    background-color: #374151; /* Cor de fundo igual ao header/footer */
-    color: #f9fafb; /* Cor do texto para contraste */
-    min-height: calc(100vh - 60px); /* Garante que o hero section ocupe a altura restante da tela */
-    padding-top: 120px; /* Ajuste conforme a altura do header */
+    background-color: #374151;
+    color: #f9fafb;
+    min-height: 100vh;
+    padding-top: 120px;
     padding-bottom: 80px;
 }
 
@@ -179,13 +241,13 @@ header:hover {
 
 .hero-section h1 {
     font-size: 34px;
-    color: #f9fafb; /* Cor do texto para contraste */
+    color: #f9fafb;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
 .hero-section p {
-    color: #d1d5db; /* Cor do texto para contraste */
+    color: #d1d5db;
     font-size: 18px;
     margin-top: 10px;
     max-width: 800px;
@@ -360,6 +422,31 @@ header:hover {
     font-size: 20px;
 }
 
+/* Define a animação de fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Aplica a animação às seções */
+section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeIn 0.6s ease-out;
+}
+
 /* Estilo do rodapé */
 footer {
     position: fixed;
@@ -374,7 +461,7 @@ footer {
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
     opacity: 0;
     transform: translateY(100px);
-    transition: opacity 0.4s ease, transform 0.6s ease, background-color 0.3s ease; /* Adicionado background-color à transição */
+    transition: opacity 0.4s ease, transform 0.6s ease, background-color 0.3s ease;
 }
 
 footer.show {
@@ -383,7 +470,7 @@ footer.show {
 }
 
 footer:hover {
-    background-color: #2d3748; /* Escurece ao passar o mouse */
+    background-color: #2d3748;
 }
 
 footer p {
@@ -414,6 +501,27 @@ footer ul li a:hover {
     transform: translateY(-2px);
 }
 
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #60a5fa;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+#back-to-top:hover {
+    background-color: #3b82f6;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     header {
@@ -426,7 +534,17 @@ footer ul li a:hover {
     }
 
     .side-nav {
-        width: 100%;
+        width: 80%;
+        left: -80%;
+    }
+
+    .side-nav.open {
+        transform: translateX(80%);
+    }
+
+    .side-nav ul li a {
+        font-size: 16px;
+        padding: 8px 12px;
     }
 
     .hero-section {
@@ -485,7 +603,17 @@ footer ul li a:hover {
     }
 
     .side-nav {
-        width: 80%;
+        width: 70%;
+        left: -70%;
+    }
+
+    .side-nav.open {
+        transform: translateX(70%);
+    }
+
+    .side-nav ul li a {
+        font-size: 14px;
+        padding: 6px 10px;
     }
 
     .hero-section {
@@ -503,9 +631,5 @@ footer ul li a:hover {
     .hamburger {
         width: 25px;
         height: 20px;
-    }
-
-    .side-nav ul li a {
-        font-size: 14px;
     }
 }

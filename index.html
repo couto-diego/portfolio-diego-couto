@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diego Couto - Desenvolvedor Full Stack</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="style.css">
     <!-- Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -21,6 +22,10 @@
                 <div class="bar"></div>
             </div>
         </div>
+        <!-- Botão de alternar modo escuro -->
+        <button id="theme-toggle" aria-label="Alternar modo escuro">
+            <i class="fas fa-moon"></i> <!-- Ícone de lua para o modo escuro -->
+        </button>
     </header>
 
     <!-- Menu Lateral -->
@@ -36,10 +41,13 @@
     <!-- Hero Section -->
     <section id="hero-section" class="hero-section">
         <div class="photo-container">
-            <img src="./diego_profile.png" alt="Foto de Diego Couto, desenvolvedor Full Stack">
+            <img src="assets/diego_profile.png" alt="Foto de Diego Couto, desenvolvedor Full Stack">
         </div>
-        <h1>Bem-vindo ao Meu Site!</h1>
-        <p>Explore o conteúdo e aprenda mais sobre meu trabalho.</p>
+        <h1>Bem-vindo ao Meu Mundo!</h1>
+        <div class="code-style">
+            <span class="keyword">while</span> <span class="variable">aprendizado</span>:<br>
+            &nbsp;&nbsp;<span class="function">print</span>(<span class="string">"A curiosidade e a prática constante te levam além do imaginável."</span>)
+        </div>
     </section>
 
     <!-- Sobre -->
@@ -83,29 +91,29 @@
         <div class="projetos-grid">
             <!-- Projeto 1 -->
             <div class="projeto-card">
-                <img src="caminho/para/imagem-do-projeto-1.png" alt="Descrição do Projeto 1">
-                <h3>Nome do Projeto 1</h3>
-                <p>Descrição breve do projeto 1. Aqui você pode falar sobre o que o projeto faz, tecnologias utilizadas, etc.</p>
-                <a href="link-para-o-projeto-1" target="_blank" class="projeto-link">Ver Projeto</a>
-                <a href="link-para-o-repositorio-1" target="_blank" class="projeto-link">Código no GitHub</a>
+                <img src="assets/Agenda.png" alt="Descrição do Projeto 1">
+                <h3>Agenda Virtual</h3>
+                <p>Uma aplicação simples e eficaz para gerenciar seus contatos. Adicione, visualize e exclua contatos com facilidade. Interface limpa e responsiva, perfeita para organização pessoal ou profissional.</p>
+                <a href="https://couto-diego.github.io/Agenda/" target="_blank" class="projeto-link">Ver Projeto</a>
+                <a href="https://github.com/couto-diego/Agenda" target="_blank" class="projeto-link">Código no GitHub</a>
             </div>
 
             <!-- Projeto 2 -->
             <div class="projeto-card">
-                <img src="caminho/para/imagem-do-projeto-2.png" alt="Descrição do Projeto 2">
-                <h3>Nome do Projeto 2</h3>
-                <p>Descrição breve do projeto 2. Aqui você pode falar sobre o que o projeto faz, tecnologias utilizadas, etc.</p>
-                <a href="link-para-o-projeto-2" target="_blank" class="projeto-link">Ver Projeto</a>
-                <a href="link-para-o-repositorio-2" target="_blank" class="projeto-link">Código no GitHub</a>
+                <img src="assets/ToDo List.png" alt="Descrição do Projeto 2">
+                <h3>ToDo ToDo-List</h3>
+                <p>Uma lista de tarefas simples e funcional para organizar suas atividades diárias. Adicione, marque como concluída e exclua tarefas com facilidade. Interface limpa e responsiva, perfeita para aumentar sua produtividade.</p>
+                <a href="https://couto-diego.github.io/ToDo-List/" target="_blank" class="projeto-link">Ver Projeto</a>
+                <a href="https://github.com/couto-diego/ToDo-List" target="_blank" class="projeto-link">Código no GitHub</a>
             </div>
 
             <!-- Projeto 3 -->
             <div class="projeto-card">
-                <img src="caminho/para/imagem-do-projeto-3.png" alt="Descrição do Projeto 3">
+                <img src="assets/Gerenciador.png" alt="Descrição do Projeto 3">
                 <h3>Nome do Projeto 3</h3>
-                <p>Descrição breve do projeto 3. Aqui você pode falar sobre o que o projeto faz, tecnologias utilizadas, etc.</p>
-                <a href="link-para-o-projeto-3" target="_blank" class="projeto-link">Ver Projeto</a>
-                <a href="link-para-o-repositorio-3" target="_blank" class="projeto-link">Código no GitHub</a>
+                <p>Uma aplicação Python para gerenciar suas assinaturas de forma organizada. Adicione, visualize e gerencie assinaturas com alertas de renovação e cálculo de custos mensais. Ideal para manter o controle dos seus gastos recorrentes</p>
+                <a href="https://www.linkedin.com/posts/diegocouto87_python-automaaexaeto-controledegastos-activity-7284991721514364928-na8J?utm_source=social_share_sheet&utm_medium=member_desktop_web" target="_blank" class="projeto-link">Ver Projeto</a>
+                <a href="https://github.com/couto-diego/gerenciado-assinatura" target="_blank" class="projeto-link">Código no GitHub</a>
             </div>
         </div>
     </section>
@@ -139,7 +147,7 @@
             </a>
 
             <!-- Baixar Currículo -->
-            <a href="caminho/para/seu-curriculo.pdf" download class="contato-link">
+            <a href="assets/Curriculo_Diego_Couto.pdf" download class="contato-link">
                 <i class="fas fa-download"></i> Baixar Currículo
             </a>
         </div>
@@ -165,4 +173,5 @@
     <!-- Script JS -->
     <script src="script.js" defer></script>
 </body>
+<button id="back-to-top" title="Voltar ao topo">↑</button>
 </html>

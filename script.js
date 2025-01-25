@@ -3,7 +3,11 @@ const hamburger = document.getElementById('hamburger');
 const sideNav = document.getElementById('side-nav');
 const footer = document.querySelector('footer');
 const body = document.querySelector('body');
-const typedOutput = document.getElementById('typed-output'); // Elemento onde o texto animado será exibido
+const typedOutput = document.getElementById('typed-output');
+const backToTopButton = document.getElementById('back-to-top');
+const menuLinks = document.querySelectorAll('.side-nav ul li a');
+const sections = document.querySelectorAll('section');
+const themeToggle = document.getElementById('theme-toggle');
 
 // Função para alternar o menu lateral e o estado do hambúrguer
 const toggleMenu = () => {
@@ -13,23 +17,23 @@ const toggleMenu = () => {
     // Mostrar rodapé com animação suave quando o menu abrir
     if (sideNav.classList.contains('open')) {
         footer.classList.add('show');
-        body.classList.add('blur'); // Aplica o desfoque no corpo
+        body.classList.add('blur');
     } else {
         footer.classList.remove('show');
-        body.classList.remove('blur'); // Remove o desfoque
+        body.classList.remove('blur');
     }
 };
 
 // Adiciona o evento de clique no ícone do hambúrguer
 hamburger.addEventListener('click', toggleMenu);
 
-// Fecha o menu se o usuário clicar fora dele (melhorando a experiência)
+// Fecha o menu se o usuário clicar fora dele
 document.addEventListener('click', (event) => {
     if (!sideNav.contains(event.target) && !hamburger.contains(event.target)) {
         sideNav.classList.remove('open');
         hamburger.classList.remove('open');
         footer.classList.remove('show');
-        body.classList.remove('blur'); // Remove o desfoque no corpo
+        body.classList.remove('blur');
     }
 });
 
@@ -53,18 +57,17 @@ const animateHeaderText = () => {
 
     const typeNextText = () => {
         if (i < texts.length) {
-            typedOutput.textContent = ''; // Limpa o texto anterior
-            typeText(texts[i], typedOutput); // Digita o próximo texto
+            typedOutput.textContent = '';
+            typeText(texts[i], typedOutput);
             i++;
 
-            let nextDelay = (texts[i - 1] === '...') ? 2000 : 3000; // Aumentando o tempo de espera para os pontos de reticências e os outros textos
+            let nextDelay = (texts[i - 1] === '...') ? 2000 : 3000;
             setTimeout(typeNextText, nextDelay);
         } else {
-            // Loop: Reinicia a animação após o fim do ciclo
             setTimeout(() => {
-                i = 0; // Reinicia a contagem do índice
-                typeNextText(); // Inicia novamente a animação
-            }, 2000); // Atraso antes de reiniciar
+                i = 0;
+                typeNextText();
+            }, 2000);
         }
     };
 
@@ -79,8 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Função para verificar a visibilidade das seções e aplicar efeitos de fade-in
-const sections = document.querySelectorAll('section');
-
 const checkVisibility = () => {
     sections.forEach(section => {
         const sectionTop = section.getBoundingClientRect().top;
@@ -101,8 +102,6 @@ window.addEventListener('resize', checkVisibility);
 document.addEventListener('DOMContentLoaded', checkVisibility);
 
 // Botão "Voltar ao Topo"
-const backToTopButton = document.getElementById('back-to-top');
-
 if (backToTopButton) {
     window.onscroll = () => {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -113,28 +112,24 @@ if (backToTopButton) {
     };
 
     backToTopButton.addEventListener('click', () => {
-        document.body.scrollTop = 0; // Para Safari
-        document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE e Opera
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     });
 }
 
 // Navegação suave para links do menu lateral
-const menuLinks = document.querySelectorAll('.side-nav ul li a');
-
 menuLinks.forEach(link => {
     link.addEventListener('click', (event) => {
-        event.preventDefault(); // Evita o comportamento padrão do link
-        const targetId = link.getAttribute('href'); // Pega o ID da seção alvo
-        const targetSection = document.querySelector(targetId); // Seleciona a seção alvo
+        event.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
 
         if (targetSection) {
-            // Rola suavemente até a seção alvo
             targetSection.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
 
-            // Fecha o menu lateral após clicar em um link
             sideNav.classList.remove('open');
             hamburger.classList.remove('open');
             footer.classList.remove('show');
@@ -142,3 +137,55 @@ menuLinks.forEach(link => {
         }
     });
 });
+
+// Seleciona todos os links que começam com "#" (links internos)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+
+        if (targetSection) {
+            const targetPosition = targetSection.offsetTop - 80;
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+
+            if (sideNav.classList.contains('open')) {
+                sideNav.classList.remove('open');
+                hamburger.classList.remove('open');
+                footer.classList.remove('show');
+                body.classList.remove('blur');
+            }
+        }
+    });
+});
+
+// Função para alternar o modo escuro
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDarkMode = body.classList.contains('dark-mode');
+        localStorage.setItem('dark-mode', isDarkMode);
+
+        // Troca o ícone entre lua e sol
+        const icon = themeToggle.querySelector('i');
+        if (isDarkMode) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+    });
+
+    // Verificar preferência salva
+    if (localStorage.getItem('dark-mode') === 'true') {
+        body.classList.add('dark-mode');
+        const icon = themeToggle.querySelector('i');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    }
+}
